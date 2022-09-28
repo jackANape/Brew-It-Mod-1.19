@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "brewmod:block/chromium_ore_block"
+  }
+}

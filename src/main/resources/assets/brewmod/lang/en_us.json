@@ -1,8 +1,10 @@
 {
   "item.brewmod.zircon": "Zircon",
   "item.brewmod.raw_zircon": "Raw Zircon",
+  "item.brewmod.lager_pint": "Pint of Lager",
   "block.brewmod.zircon_block": "Block of Zircon",
   "block.brewmod.zircon_ore": "Zircon Ore",
   "block.brewmod.deepslate_zircon_ore": "Deepslate Zircon Ore",
+  "block.brewmod.chromium_ore_block": "Block of Chromium Ore",
   "itemGroup.brewtab": "Brew"
 }

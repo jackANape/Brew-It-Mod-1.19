@@ -1,6 +1,8 @@
 package net.jackanape.brewmod;
 
 import com.mojang.logging.LogUtils;
+import net.jackanape.brewmod.block.ModBlocks;
+import net.jackanape.brewmod.item.ModItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,12 +16,14 @@ import org.slf4j.Logger;
 @Mod(BrewMod.MOD_ID)
 public class BrewMod {
     public static final String MOD_ID = "brewmod";
-    // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public BrewMod() {
         // added a new comment
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

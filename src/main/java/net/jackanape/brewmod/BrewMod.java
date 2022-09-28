@@ -18,6 +18,7 @@ public class BrewMod {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public BrewMod() {
+        // added a new comment
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);

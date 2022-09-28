@@ -1,6 +1,6 @@
 This mod will add a range of new features that 
-include 
-   Farming Hops & Barley, 
+include: 
+     Farming Hops & Barley, 
      Fermenting Wart, 
      Brewing Beer, 
      Pouring Drinks 
@@ -8,4 +8,4 @@ include
 
 All sold production will be credited in Beer Bucks which in turn can purchase more equiptment to produce finer Beer.
 
-More to come...
+More adventures to come...

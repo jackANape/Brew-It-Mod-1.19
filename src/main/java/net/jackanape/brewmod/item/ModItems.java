@@ -30,7 +30,7 @@ public class ModItems {
 
 
     /* utensils */
-    public static final RegistryObject<Item> LAGER_PINT_EMPTY = ITEMS.register("lager_pint_empty",
+    public static final RegistryObject<Item> EMPTY_PINT_GLASS = ITEMS.register("empty_pint_glass",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
 

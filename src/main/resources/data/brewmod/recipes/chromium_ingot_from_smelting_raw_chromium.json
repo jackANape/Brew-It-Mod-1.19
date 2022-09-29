@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "chromium_ingot",
+  "ingredient": {
+    "item": "brewmod:raw_chromium"
+  },
+  "result": "brewmod:chromium_ingot"
+}

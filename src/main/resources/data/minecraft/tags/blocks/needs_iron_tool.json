@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "brewmod:deepslate_zircon_ore"
+    "brewmod:deepslate_zircon_ore",
+    "brewmod:chromium_ore_block"
   ]
 }

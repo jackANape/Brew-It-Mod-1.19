@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "brewmod:zircon_ore",
+    "brewmod:zircon_block",
+    "brewmod:deepslate_zircon_ore"
+  ]
+}

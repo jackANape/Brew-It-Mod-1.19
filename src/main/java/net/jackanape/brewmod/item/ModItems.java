@@ -1,7 +1,11 @@
 package net.jackanape.brewmod.item;
 
 import net.jackanape.brewmod.BrewMod;
+import net.jackanape.brewmod.block.ModBlocks;
+import net.jackanape.brewmod.item.custom.EightBallItem;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,6 +21,8 @@ public class ModItems {
     public static final RegistryObject<Item> RAW_ZIRCON = ITEMS.register("raw_zircon",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
+    public static final RegistryObject<Item> EIGHT_BALL = ITEMS.register("eight_ball",
+            () -> new EightBallItem(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(1)));
 
 
     /* ##########  Brew Mod  ########## */
@@ -40,7 +46,8 @@ public class ModItems {
 
     /* produce */
     public static final RegistryObject<Item> LAGER_PINT = ITEMS.register("lager_pint",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)
+                    .food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
 
     public static final RegistryObject<Item> WORT = ITEMS.register("wort",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
@@ -48,10 +55,17 @@ public class ModItems {
     public static final RegistryObject<Item> BEER_CUBE = ITEMS.register("beer_cube",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
-    public static final RegistryObject<Item> MILLED_BARLEY = ITEMS.register("milled_barley",
+    public static final RegistryObject<Item> HOPS = ITEMS.register("hops",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
-    public static final RegistryObject<Item> HOPS = ITEMS.register("hops",
+    public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BARLEY_CROP.get(),
+                    new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(64)));
+
+    public static final RegistryObject<Item> BARLEY = ITEMS.register("barley",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(64)));
+
+    public static final RegistryObject<Item> MILLED_BARLEY = ITEMS.register("milled_barley",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
 

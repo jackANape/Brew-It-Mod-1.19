@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=true": {
+      "model": "brewmod:block/zircon_lamp_on"
+    },
+    "lit=false": {
+      "model": "brewmod:block/zircon_lamp_off"
+    }
+  }
+}

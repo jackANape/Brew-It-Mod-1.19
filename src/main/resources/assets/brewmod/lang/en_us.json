@@ -1,4 +1,5 @@
 {
+  "item.brewmod.eight_ball": "Eight Ball",
   "item.brewmod.zircon": "Zircon",
   "item.brewmod.raw_zircon": "Raw Zircon",
   "item.brewmod.raw_chromium": "Raw Chromium",
@@ -10,9 +11,15 @@
   "item.brewmod.wort": "Wort",
   "item.brewmod.milled_barley": "Milled Barley",
   "item.brewmod.hops": "Hops",
+  "item.brewmod.barley": "Barley",
+  "item.brewmod.barley_seeds": "Barley Seeds",
   "block.brewmod.zircon_block": "Block of Zircon",
   "block.brewmod.zircon_ore": "Zircon Ore",
   "block.brewmod.deepslate_zircon_ore": "Deepslate Zircon Ore",
   "block.brewmod.chromium_ore_block": "Block of Chromium Ore",
-  "itemGroup.brewtab": "Brew"
+  "block.brewmod.jumpy_block": "Jumpy Block",
+  "block.brewmod.zircon_lamp": "Zircon Lamp",
+  "block.brewmod.barley_crop": "Barley Crop",
+  "itemGroup.brewtab": "Brew",
+  "entity.minecraft.villager.brewmod.jumpy_master": "Brew Master"
 }

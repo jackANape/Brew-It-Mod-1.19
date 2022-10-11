@@ -1,6 +1,9 @@
 package net.jackanape.brewmod.block;
 
 import net.jackanape.brewmod.BrewMod;
+import net.jackanape.brewmod.block.custom.BarleyCropBlock;
+import net.jackanape.brewmod.block.custom.JumpyBlock;
+import net.jackanape.brewmod.block.custom.ZirconLampBlock;
 import net.jackanape.brewmod.item.ModCreativeModeTab;
 import net.jackanape.brewmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -8,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -24,6 +28,15 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, BrewMod.MOD_ID);
 
+    public static final RegistryObject<Block> JUMPY_BLOCK = registerBlock("jumpy_block",
+            () -> new JumpyBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> ZIRCON_LAMP = registerBlock("zircon_lamp",
+            () -> new ZirconLampBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()
+                    .lightLevel(state -> state.getValue(ZirconLampBlock.LIT) ? 15 : 0)), ModCreativeModeTab.BREW_TAB);
+
     public static final RegistryObject<Block> ZIRCON_BLOCK = registerBlock("zircon_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.BREW_TAB);
@@ -38,10 +51,15 @@ public class ModBlocks {
                     .strength(6f).requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7)), ModCreativeModeTab.BREW_TAB);
 
+
+    /* Brew It Mod */
     public static final RegistryObject<Block> CHROMIUM_ORE_BLOCK = registerBlock("chromium_ore_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f, 10f)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop",
+            () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
 
     public static void register(IEventBus eventBus) {

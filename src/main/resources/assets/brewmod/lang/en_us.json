@@ -16,10 +16,16 @@
   "block.brewmod.zircon_block": "Block of Zircon",
   "block.brewmod.zircon_ore": "Zircon Ore",
   "block.brewmod.deepslate_zircon_ore": "Deepslate Zircon Ore",
-  "block.brewmod.chromium_ore_block": "Block of Chromium Ore",
+  "block.brewmod.chromium_ore": "Chromium Ore",
+  "block.brewmod.deepslate_chromium_ore": "Deepslate Chromium Ore",
   "block.brewmod.jumpy_block": "Jumpy Block",
   "block.brewmod.zircon_lamp": "Zircon Lamp",
   "block.brewmod.barley_crop": "Barley Crop",
   "itemGroup.brewtab": "Brew",
-  "entity.minecraft.villager.brewmod.jumpy_master": "Brew Master"
+  "entity.minecraft.villager.brewmod.jumpy_master": "Jumpy Master",
+  "entity.minecraft.villager.brewmod.brew_master": "Brew Master",
+  "key.category.brewmod.brew": "Brew Mod",
+  "key.brewmod.drink_water": "Drink Water",
+  "message.brewmod.drink_water": "Drinking Water",
+  "message.brewmod.no_water": "No Drinking Water"
 }

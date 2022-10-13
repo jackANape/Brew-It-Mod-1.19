@@ -53,7 +53,12 @@ public class ModBlocks {
 
 
     /* Brew It Mod */
-    public static final RegistryObject<Block> CHROMIUM_ORE_BLOCK = registerBlock("chromium_ore_block",
+    public static final RegistryObject<Block> CHROMIUM_ORE = registerBlock("chromium_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3f, 10f)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> DEEPSLATE_CHROMIUM_ORE = registerBlock("deepslate_chromium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f, 10f)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)), ModCreativeModeTab.BREW_TAB);

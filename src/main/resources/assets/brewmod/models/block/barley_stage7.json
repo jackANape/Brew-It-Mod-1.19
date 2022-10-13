@@ -2,5 +2,6 @@
   "parent": "minecraft:block/crop",
   "textures": {
     "crop": "brewmod:block/barley_stage7"
-  }
+  },
+  "render_type": "cutout"
 }

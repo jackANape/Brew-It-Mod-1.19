@@ -32,10 +32,24 @@ public class ModVillagers {
                     SoundEvents.VILLAGER_WORK_ARMORER));
 
 
+    /* Brew Villager */
+    public static final RegistryObject<PoiType> ZIRCON_BLOCK_POI = POI_TYPES.register("zircon_block_poi",
+            () -> new PoiType(ImmutableSet.copyOf(ModBlocks.ZIRCON_BLOCK.get().getStateDefinition().getPossibleStates()),
+                    1, 1));
+
+    public static final RegistryObject<VillagerProfession> BREW_MASTER = VILLAGER_PROFESSIONS.register("brew_master",
+            () -> new VillagerProfession("brew_master", x -> x.get() == ZIRCON_BLOCK_POI.get(),
+                    x -> x.get() == ZIRCON_BLOCK_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
+                    SoundEvents.VILLAGER_WORK_LEATHERWORKER));
+
+
     public static void registerPOIs() {
         try {
             ObfuscationReflectionHelper.findMethod(PoiType.class,
                     "registerBlockStates", PoiType.class).invoke(null, JUMPY_BLOCK_POI.get());
+
+            ObfuscationReflectionHelper.findMethod(PoiType.class,
+                    "registerBlockStates", PoiType.class).invoke(null, ZIRCON_BLOCK_POI.get());
         } catch (InvocationTargetException | IllegalAccessException exception) {
             exception.printStackTrace();
             ;

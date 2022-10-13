@@ -3,9 +3,11 @@ package net.jackanape.brewmod;
 import com.mojang.logging.LogUtils;
 import net.jackanape.brewmod.block.ModBlocks;
 import net.jackanape.brewmod.item.ModItems;
+import net.jackanape.brewmod.networking.ModMessages;
+import net.jackanape.brewmod.painting.ModPaintings;
 import net.jackanape.brewmod.villager.ModVillagers;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.jackanape.brewmod.world.feature.ModConfiguredFeatures;
+import net.jackanape.brewmod.world.feature.ModPlacedFeatures;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,12 +25,14 @@ public class BrewMod {
 
 
     public BrewMod() {
-        // added a new comment
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModVillagers.register(modEventBus);
+        ModPaintings.register(modEventBus);
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus); //ore generation
 
 
         modEventBus.addListener(this::commonSetup);
@@ -38,8 +42,11 @@ public class BrewMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            ModMessages.register();
             ModVillagers.registerPOIs();
         });
+
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -47,7 +54,6 @@ public class BrewMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BARLEY_CROP.get(), RenderType.cutout());
 
         }
     }

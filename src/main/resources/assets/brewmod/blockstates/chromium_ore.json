@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "brewmod:block/chromium_ore"
+    }
+  }
+}

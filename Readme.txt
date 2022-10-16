@@ -3,7 +3,7 @@ Brew It with Minecraft
 This mod will add a range of new features that 
 include: 
      Farming Hops & Barley, 
-     Fermenting Wart, 
+     Fermenting Wort, 
      Brewing Beer, 
      Pouring Drinks 
      and Selling production to the local village.

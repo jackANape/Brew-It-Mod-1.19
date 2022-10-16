@@ -27,5 +27,7 @@
   "key.category.brewmod.brew": "Brew Mod",
   "key.brewmod.drink_water": "Drink Water",
   "message.brewmod.drink_water": "Drinking Water",
-  "message.brewmod.no_water": "No Drinking Water"
+  "message.brewmod.no_water": "No Drinking Water",
+  "item.brewmod.soap_water_bucket": "Soap Water Bucket",
+  "item.brewmod.beer_water_bucket": "Beer Water Bucket"
 }

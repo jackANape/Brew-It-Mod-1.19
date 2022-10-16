@@ -4,16 +4,14 @@ import net.jackanape.brewmod.BrewMod;
 import net.jackanape.brewmod.block.custom.BarleyCropBlock;
 import net.jackanape.brewmod.block.custom.JumpyBlock;
 import net.jackanape.brewmod.block.custom.ZirconLampBlock;
+import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.ModCreativeModeTab;
 import net.jackanape.brewmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -51,6 +49,9 @@ public class ModBlocks {
                     .strength(6f).requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7)), ModCreativeModeTab.BREW_TAB);
 
+    public static final RegistryObject<LiquidBlock> SOAP_WATER_BLOCK = BLOCKS.register("soap_water_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_SOAP_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)));
+
 
     /* Brew It Mod */
     public static final RegistryObject<Block> CHROMIUM_ORE = registerBlock("chromium_ore",
@@ -65,6 +66,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> BARLEY_CROP = BLOCKS.register("barley_crop",
             () -> new BarleyCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+
+    public static final RegistryObject<LiquidBlock> BEER_WATER_BLOCK = BLOCKS.register("beer_water_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_BEER_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
 
     public static void register(IEventBus eventBus) {

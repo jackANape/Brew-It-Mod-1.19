@@ -2,10 +2,13 @@ package net.jackanape.brewmod.item;
 
 import net.jackanape.brewmod.BrewMod;
 import net.jackanape.brewmod.block.ModBlocks;
+import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.custom.EightBallItem;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,6 +26,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> EIGHT_BALL = ITEMS.register("eight_ball",
             () -> new EightBallItem(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> SOAP_WATER_BUCKET = ITEMS.register("soap_water_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_SOAP_WATER,
+                    new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 
     /* ##########  Brew Mod  ########## */
@@ -45,6 +52,10 @@ public class ModItems {
 
 
     /* produce */
+    public static final RegistryObject<Item> BEER_WATER_BUCKET = ITEMS.register("beer_water_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_BEER_WATER,
+                    new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
+
     public static final RegistryObject<Item> LAGER_PINT = ITEMS.register("lager_pint",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)
                     .food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));

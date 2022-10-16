@@ -1,5 +1,8 @@
 package net.jackanape.brewmod.networking.packet;
 
+import net.jackanape.brewmod.block.ModBlocks;
+import net.jackanape.brewmod.networking.ModMessages;
+import net.jackanape.brewmod.thirst.PlayerThirstProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -7,7 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -50,13 +52,28 @@ public class DrinkWaterC2SPacket {
                         0.5F, level.random.nextFloat() * 0.1F + 0.9F);
 
                 //increase the water level / thirst level of player
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+                    thirst.addThirst(1);
 
-                //output the current thirst level
+                    //output the current thirst level
+                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
+                            .withStyle(ChatFormatting.AQUA));
+                    ModMessages.sendToPlayer(new ThirstDataSyncS2CPacket(thirst.getThirst()), player);
+                });
+
+
             } else {
                 //notify the player that there's no water
                 //output the current thirst level
                 player.sendSystemMessage(Component.translatable(MESSAGE_NO_WATER)
                         .withStyle(ChatFormatting.RED));
+
+                player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+                    //output the current thirst level
+                    player.sendSystemMessage(Component.literal("Current Thirst " + thirst.getThirst())
+                            .withStyle(ChatFormatting.AQUA));
+                    ModMessages.sendToPlayer(new ThirstDataSyncS2CPacket(thirst.getThirst()), player);
+                });
             }
 
         });
@@ -67,7 +84,7 @@ public class DrinkWaterC2SPacket {
     //allow player to drink from barrel or open keg
     private boolean hasWaterAroundThem(ServerPlayer player, ServerLevel level, int size) {
         return level.getBlockStates(player.getBoundingBox().inflate(size))
-                .filter(state -> state.is(Blocks.WATER)).toArray().length > 0;
+                .filter(state -> state.is(ModBlocks.BEER_WATER_BLOCK.get())).toArray().length > 0;
     }
 
 }

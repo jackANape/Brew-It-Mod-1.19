@@ -57,15 +57,56 @@ public class ModEvents {
                     stack, 10, 8, 0.02F));
         }
 
-        if (event.getType() == ModVillagers.BREW_MASTER.get()) {
+        if (event.getType() == ModVillagers.BARKEEP.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            ItemStack stack = new ItemStack(ModItems.HOPS.get(), 20);
             int villagerLevel = 1;
 
-            //create beer bucks to be traded with
+            //V2P - buying
+            ItemStack villager_lager = new ItemStack(ModItems.LAGER_PINT.get(), 1); //p_41602 = quantity per sale
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 8),
-                    stack, 10, 8, 0.02F));
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 5), //giving villager item, cost
+                    villager_lager, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_empty_pint = new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 10); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 13), //giving villager item, cost
+                    villager_empty_pint, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_diamond = new ItemStack(Items.DIAMOND, 1); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 100), //giving villager item, cost
+                    villager_diamond, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_barley_seeds = new ItemStack(ModItems.BARLEY_SEEDS.get(), 3); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
+                    villager_barley_seeds, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            //empty cases
+//            ItemStack villager_empty_case = new ItemStack(ModItems.EMPTY_BOTTLE_CASE.get(), 1); //item buying, p_41602 = quantity per sale
+//            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+//                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
+//                    villager_empty_pint, 10, 8, 0.02F)); //return item, maxuses, villager xp gain, price multiplier
+
+            //empty bottles
+//            ItemStack villager_empty_bottles = new ItemStack(ModItems.EMPTY_GLASS_BOTTLE.get(), 10); //item buying, p_41602 = quantity per sale
+//            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+//                    new ItemStack(ModItems.BEER_BUCKS.get(), 75), //giving villager item, cost
+//                    villager_empty_pint, 10, 8, 0.02F)); //return item, maxuses, villager xp gain, price multiplier
+
+
+            //P2V - selling
+            ItemStack player_empty_pint_glass = new ItemStack(ModItems.BEER_BUCKS.get(), 1); //item selling, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 3), //giving villager item, cost
+                    player_empty_pint_glass, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack player_lager = new ItemStack(ModItems.BEER_BUCKS.get(), 2); //item selling, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.LAGER_PINT.get(), 1), //giving villager item, cost
+                    player_lager, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+
         }
     }
 

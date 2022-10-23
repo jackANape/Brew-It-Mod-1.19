@@ -70,6 +70,17 @@ public class ModBlocks {
     public static final RegistryObject<LiquidBlock> BEER_WATER_BLOCK = BLOCKS.register("beer_water_block",
             () -> new LiquidBlock(ModFluids.SOURCE_BEER_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
+    public static final RegistryObject<Block> BAR_BLOCK = registerBlock("bar_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(3f, 10f)
+                    .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
+
+    //barkeep work poi
+    public static final RegistryObject<Block> BARKEEP_WORK_BLOCK = registerBlock("barkeep_work_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(3f, 10f)
+                    .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

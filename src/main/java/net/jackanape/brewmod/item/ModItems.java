@@ -41,10 +41,13 @@ public class ModItems {
     public static final RegistryObject<Item> CHROMIUM_INGOT = ITEMS.register("chromium_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
+    /* misc */
+    public static final RegistryObject<Item> BEER_BUCKS = ITEMS.register("beer_bucks",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(250)));
 
     /* utensils */
     public static final RegistryObject<Item> EMPTY_PINT_GLASS = ITEMS.register("empty_pint_glass",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(64)));
 
 
     public static final RegistryObject<Item> BEER_CUBE_EMPTY = ITEMS.register("beer_cube_empty",
@@ -57,7 +60,7 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static final RegistryObject<Item> LAGER_PINT = ITEMS.register("lager_pint",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(1)
                     .food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
 
     public static final RegistryObject<Item> WORT = ITEMS.register("wort",

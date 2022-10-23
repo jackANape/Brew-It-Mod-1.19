@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "brewmod:block/barkeep_work_block"
+    }
+  }
+}

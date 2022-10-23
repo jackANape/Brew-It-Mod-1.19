@@ -33,13 +33,15 @@ public class ModVillagers {
 
 
     /* Brew Villager */
-    public static final RegistryObject<PoiType> ZIRCON_BLOCK_POI = POI_TYPES.register("zircon_block_poi",
-            () -> new PoiType(ImmutableSet.copyOf(ModBlocks.ZIRCON_BLOCK.get().getStateDefinition().getPossibleStates()),
+    //init the work block
+    public static final RegistryObject<PoiType> BARKEEP_WORK_POI = POI_TYPES.register("barkeep_work_poi",
+            () -> new PoiType(ImmutableSet.copyOf(ModBlocks.BARKEEP_WORK_BLOCK.get().getStateDefinition().getPossibleStates()),
                     1, 1));
 
-    public static final RegistryObject<VillagerProfession> BREW_MASTER = VILLAGER_PROFESSIONS.register("brew_master",
-            () -> new VillagerProfession("brew_master", x -> x.get() == ZIRCON_BLOCK_POI.get(),
-                    x -> x.get() == ZIRCON_BLOCK_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
+    //init the villager getting the job from the work block
+    public static final RegistryObject<VillagerProfession> BARKEEP = VILLAGER_PROFESSIONS.register("barkeep",
+            () -> new VillagerProfession("barkeep", x -> x.get() == BARKEEP_WORK_POI.get(),
+                    x -> x.get() == BARKEEP_WORK_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
                     SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
 
@@ -49,7 +51,7 @@ public class ModVillagers {
                     "registerBlockStates", PoiType.class).invoke(null, JUMPY_BLOCK_POI.get());
 
             ObfuscationReflectionHelper.findMethod(PoiType.class,
-                    "registerBlockStates", PoiType.class).invoke(null, ZIRCON_BLOCK_POI.get());
+                    "registerBlockStates", PoiType.class).invoke(null, BARKEEP_WORK_POI.get());
         } catch (InvocationTargetException | IllegalAccessException exception) {
             exception.printStackTrace();
             ;

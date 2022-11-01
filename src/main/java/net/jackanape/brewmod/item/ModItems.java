@@ -43,7 +43,7 @@ public class ModItems {
 
     /* misc */
     public static final RegistryObject<Item> BEER_BUCKS = ITEMS.register("beer_bucks",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(250)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
     /* utensils */
     public static final RegistryObject<Item> EMPTY_PINT_GLASS = ITEMS.register("empty_pint_glass",

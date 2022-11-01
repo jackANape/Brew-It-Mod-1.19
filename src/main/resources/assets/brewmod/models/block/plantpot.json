@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "brewmod:block/plantpot_side",
+    "down": "brewmod:block/plantpot_bottom",
+    "east": "brewmod:block/plantpot_side",
+    "north": "brewmod:block/plantpot_side",
+    "particle": "brewmod:block/plantpot_side",
+    "south": "brewmod:block/plantpot_side",
+    "up": "brewmod:block/plantpot_top",
+    "west": "brewmod:block/plantpot_side"
+  }
+}

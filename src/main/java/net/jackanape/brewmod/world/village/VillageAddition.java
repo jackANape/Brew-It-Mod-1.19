@@ -76,22 +76,22 @@ public class VillageAddition {
         // Note, the resourcelocation is getting the pool files from the data folder. Not assets folder.
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/plains/houses"),
-                "brewmod:plains_tavern_niceglass", 250);
+                "brewmod:plains_tavern", 250);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/snowy/houses"),
-                "brewmod:plains_tavern_niceglass", 250);
+                "brewmod:plains_tavern", 250);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/savanna/houses"),
-                "brewmod:plains_tavern_niceglass", 250);
+                "brewmod:plains_tavern", 250);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/taiga/houses"),
-                "brewmod:plains_tavern_niceglass", 250);
+                "brewmod:plains_tavern", 250);
 
         addBuildingToPool(templatePoolRegistry, processorListRegistry,
                 new ResourceLocation("minecraft:village/desert/houses"),
-                "brewmod:plains_tavern_niceglass", 250);
+                "brewmod:plains_tavern", 250);
     }
 }

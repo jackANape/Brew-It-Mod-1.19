@@ -12,7 +12,6 @@ import net.jackanape.brewmod.villager.ModVillagers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,32 +33,38 @@ import java.util.List;
 public class ModEvents {
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
-        if (event.getType() == VillagerProfession.TOOLSMITH) {
-            //change eight ball to beer equiptment
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            ItemStack stack = new ItemStack(ModItems.EIGHT_BALL.get(), 1);
-            int villagerLevel = 1;
 
-            //create beer bucks to be traded with
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 2),
-                    stack, 10, 8, 0.02F));
-        }
-
-        if (event.getType() == ModVillagers.JUMP_MASTER.get()) {
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            ItemStack stack = new ItemStack(ModItems.RAW_ZIRCON.get(), 20);
-            int villagerLevel = 1;
-
-            //create beer bucks to be traded with
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 8),
-                    stack, 10, 8, 0.02F));
-        }
-
+        //player can only buy/sell small items to get started with farming
+        //lvl 1
         if (event.getType() == ModVillagers.BARKEEP.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             int villagerLevel = 1;
+
+            //P2V - selling
+            ItemStack player_empty_pint_glass = new ItemStack(ModItems.BEER_BUCKS.get(), 1); //item selling, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 3), //giving villager item, cost
+                    player_empty_pint_glass, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            //V2P - buying
+            ItemStack villager_barley_seeds = new ItemStack(ModItems.BARLEY_SEEDS.get(), 3); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
+                    villager_barley_seeds, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+        }
+
+        //player can start buying beer from villager
+        //lvl 2
+        if (event.getType() == ModVillagers.BARKEEP.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 2;
+
+            //P2V - selling
+            ItemStack player_lager = new ItemStack(ModItems.BEER_BUCKS.get(), 2); //item selling, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.LAGER_PINT.get(), 1), //giving villager item, cost
+                    player_lager, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
             //V2P - buying
             ItemStack villager_lager = new ItemStack(ModItems.LAGER_PINT.get(), 1); //p_41602 = quantity per sale
@@ -67,22 +72,43 @@ public class ModEvents {
                     new ItemStack(ModItems.BEER_BUCKS.get(), 5), //giving villager item, cost
                     villager_lager, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
+        }
+
+        //player can start selling beer - small quantities
+        //lvl 3
+        if (event.getType() == ModVillagers.BARKEEP.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 3;
+
+            //V2P - buying
             ItemStack villager_empty_pint = new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 10); //item buying, p_41602 = quantity per sale
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
                     new ItemStack(ModItems.BEER_BUCKS.get(), 13), //giving villager item, cost
                     villager_empty_pint, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+        }
 
+        //player can start selling beer - large quantities
+        //lvl 4
+        if (event.getType() == ModVillagers.BARKEEP.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 4;
+
+        }
+
+        //lvl 5
+        if (event.getType() == ModVillagers.BARKEEP.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 5;
+
+            //V2P - buying
             ItemStack villager_diamond = new ItemStack(Items.DIAMOND, 1); //item buying, p_41602 = quantity per sale
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
                     new ItemStack(ModItems.BEER_BUCKS.get(), 100), //giving villager item, cost
                     villager_diamond, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
-            ItemStack villager_barley_seeds = new ItemStack(ModItems.BARLEY_SEEDS.get(), 3); //item buying, p_41602 = quantity per sale
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
-                    villager_barley_seeds, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+        }
 
-            //empty cases
+        //empty cases
 //            ItemStack villager_empty_case = new ItemStack(ModItems.EMPTY_BOTTLE_CASE.get(), 1); //item buying, p_41602 = quantity per sale
 //            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
 //                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
@@ -95,19 +121,7 @@ public class ModEvents {
 //                    villager_empty_pint, 10, 8, 0.02F)); //return item, maxuses, villager xp gain, price multiplier
 
 
-            //P2V - selling
-            ItemStack player_empty_pint_glass = new ItemStack(ModItems.BEER_BUCKS.get(), 1); //item selling, p_41602 = quantity per sale
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 3), //giving villager item, cost
-                    player_empty_pint_glass, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
-            ItemStack player_lager = new ItemStack(ModItems.BEER_BUCKS.get(), 2); //item selling, p_41602 = quantity per sale
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(ModItems.LAGER_PINT.get(), 1), //giving villager item, cost
-                    player_lager, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
-
-
-        }
     }
 
     //Remove later

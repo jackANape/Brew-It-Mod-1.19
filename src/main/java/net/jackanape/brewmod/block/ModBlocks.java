@@ -52,6 +52,8 @@ public class ModBlocks {
     public static final RegistryObject<LiquidBlock> SOAP_WATER_BLOCK = BLOCKS.register("soap_water_block",
             () -> new LiquidBlock(ModFluids.SOURCE_SOAP_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
+    public static final RegistryObject<Block> PLANT_POT = registerBlock("plantpot",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.WOOD)), ModCreativeModeTab.BREW_TAB);
 
     /* Brew It Mod */
     public static final RegistryObject<Block> CHROMIUM_ORE = registerBlock("chromium_ore",

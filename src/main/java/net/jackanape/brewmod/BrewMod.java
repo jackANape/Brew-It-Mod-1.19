@@ -2,14 +2,18 @@ package net.jackanape.brewmod;
 
 import com.mojang.logging.LogUtils;
 import net.jackanape.brewmod.block.ModBlocks;
+import net.jackanape.brewmod.block.entity.ModBlockEntities;
 import net.jackanape.brewmod.block.fluid.ModFluidTypes;
 import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.ModItems;
 import net.jackanape.brewmod.networking.ModMessages;
 import net.jackanape.brewmod.painting.ModPaintings;
+import net.jackanape.brewmod.screen.ChromeBottlerScreen;
+import net.jackanape.brewmod.screen.ModMenuTypes;
 import net.jackanape.brewmod.villager.ModVillagers;
 import net.jackanape.brewmod.world.feature.ModConfiguredFeatures;
 import net.jackanape.brewmod.world.feature.ModPlacedFeatures;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,6 +43,8 @@ public class BrewMod {
         ModPlacedFeatures.register(modEventBus); //ore generation
         ModFluids.register(modEventBus);
         ModFluidTypes.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);
@@ -63,6 +69,9 @@ public class BrewMod {
 
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
+
+            MenuScreens.register(ModMenuTypes.CHROME_BOTTLER_MENU.get(), ChromeBottlerScreen::new);
+
 
         }
     }

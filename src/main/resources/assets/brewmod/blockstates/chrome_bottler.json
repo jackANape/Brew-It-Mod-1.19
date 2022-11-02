@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "brewmod:block/chrome_bottler"
+    },
+    "facing=south": {
+      "model": "brewmod:block/chrome_bottler",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "brewmod:block/chrome_bottler",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "brewmod:block/chrome_bottler",
+      "y": 270
+    }
+  }
+}

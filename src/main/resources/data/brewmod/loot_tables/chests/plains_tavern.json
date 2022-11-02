@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "brewmod:beer_bucks",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "brewmod:empty_pint_glass",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "brewmod:lager_pint",
+          "weight": 15
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 5,
+        "min": 1.0
+      }
+    }
+  ]
+}

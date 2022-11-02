@@ -1,9 +1,7 @@
 package net.jackanape.brewmod.block;
 
 import net.jackanape.brewmod.BrewMod;
-import net.jackanape.brewmod.block.custom.BarleyCropBlock;
-import net.jackanape.brewmod.block.custom.JumpyBlock;
-import net.jackanape.brewmod.block.custom.ZirconLampBlock;
+import net.jackanape.brewmod.block.custom.*;
 import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.ModCreativeModeTab;
 import net.jackanape.brewmod.item.ModItems;
@@ -55,7 +53,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> PLANT_POT = registerBlock("plantpot",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.WOOD)), ModCreativeModeTab.BREW_TAB);
 
-    /* Brew It Mod */
+
+
+    /* ##########  Brew Mod  ########## */
+
+    /* minerals */
     public static final RegistryObject<Block> CHROMIUM_ORE = registerBlock("chromium_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3f, 10f)
@@ -77,11 +79,22 @@ public class ModBlocks {
                     .strength(3f, 10f)
                     .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
 
-    //barkeep work poi
+    /* Custom Blocks */
+    public static final RegistryObject<Block> WOODEN_BARREL = registerBlock("wooden_barrel",
+            () -> new WoodenBarrelBlock(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(3f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> CHROME_BOTTLER = registerBlock("chrome_bottler",
+            () -> new ChromeBottlerBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
+
+    /* Barkeep POI */
     public static final RegistryObject<Block> BARKEEP_WORK_BLOCK = registerBlock("barkeep_work_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(3f, 10f)
                     .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
+
+    //
 
 
     public static void register(IEventBus eventBus) {

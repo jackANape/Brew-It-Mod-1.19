@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "brewmod:block/wooden_barrel"
+    },
+    "facing=south": {
+      "model": "brewmod:block/wooden_barrel",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "brewmod:block/wooden_barrel",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "brewmod:block/wooden_barrel",
+      "y": 270
+    }
+  }
+}

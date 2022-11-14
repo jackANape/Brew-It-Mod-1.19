@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "brewmod:block/mash_tun"
+    },
+    "facing=south": {
+      "model": "brewmod:block/mash_tun",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "brewmod:block/mash_tun",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "brewmod:block/mash_tun",
+      "y": 270
+    }
+  }
+}

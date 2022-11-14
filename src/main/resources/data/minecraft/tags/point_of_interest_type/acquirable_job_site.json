@@ -1,6 +1,7 @@
 {
   "values": [
     "brewmod:jumpy_block_poi",
-    "brewmod:barkeep_work_poi"
+    "brewmod:barkeep_work_poi",
+    "brewmod:brewmaster_work_poi"
   ]
 }

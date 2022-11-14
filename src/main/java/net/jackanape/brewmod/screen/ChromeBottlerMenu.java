@@ -9,7 +9,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ChromeBottlerMenu extends AbstractContainerMenu {
@@ -18,7 +18,8 @@ public class ChromeBottlerMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public ChromeBottlerMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2)); // must make 2 the same as containerData passed from chromebottlerblockentity
+        // must make 2 the same as containerData passed from chromebottlerblockentity
+        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
     public ChromeBottlerMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -31,7 +32,7 @@ public class ChromeBottlerMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 31, 30));
             this.addSlot(new SlotItemHandler(handler, 1, 70, 30));
             this.addSlot(new SlotItemHandler(handler, 2, 109, 44));
@@ -44,13 +45,13 @@ public class ChromeBottlerMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
-    public int getScaledProgress() {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);  // Max Progress
-        int progressArrowSize = 26; // This is the height in pixels of your arrow
-
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
-    }
+//    public int getScaledProgress() {
+//        int progress = this.data.get(0);
+//        int maxProgress = this.data.get(1);  // Max Progress
+//        int progressArrowSize = 26; // This is the height in pixels of your arrow
+//
+//        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+//    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.

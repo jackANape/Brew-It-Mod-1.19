@@ -44,6 +44,14 @@ public class ModVillagers {
                     x -> x.get() == BARKEEP_WORK_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
                     SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
+    public static final RegistryObject<PoiType> BREWMASTER_WORK_POI = POI_TYPES.register("brewmaster_work_poi",
+            () -> new PoiType(ImmutableSet.copyOf(ModBlocks.BREWMASTER_WORK_BLOCK.get().getStateDefinition().getPossibleStates()),
+                    1, 1));
+
+    public static final RegistryObject<VillagerProfession> BREWMASTER = VILLAGER_PROFESSIONS.register("brewmaster",
+            () -> new VillagerProfession("brewmaster", x -> x.get() == BREWMASTER_WORK_POI.get(),
+                    x -> x.get() == BREWMASTER_WORK_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
+                    SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
     public static void registerPOIs() {
         try {
@@ -52,9 +60,12 @@ public class ModVillagers {
 
             ObfuscationReflectionHelper.findMethod(PoiType.class,
                     "registerBlockStates", PoiType.class).invoke(null, BARKEEP_WORK_POI.get());
+
+            ObfuscationReflectionHelper.findMethod(PoiType.class,
+                    "registerBlockStates", PoiType.class).invoke(null, BREWMASTER_WORK_POI.get());
         } catch (InvocationTargetException | IllegalAccessException exception) {
             exception.printStackTrace();
-            ;
+
         }
     }
 

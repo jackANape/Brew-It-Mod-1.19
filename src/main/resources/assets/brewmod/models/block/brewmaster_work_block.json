@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "brewmod:block/brewmaster_work_block",
+    "down": "brewmod:block/bar_block_top",
+    "east": "brewmod:block/brewmaster_work_block",
+    "north": "brewmod:block/brewmaster_work_block",
+    "particle": "brewmod:block/brewmaster_work_block",
+    "south": "brewmod:block/brewmaster_work_block",
+    "up": "brewmod:block/bar_block_top",
+    "west": "brewmod:block/brewmaster_work_block"
+  }
+}

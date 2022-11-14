@@ -9,9 +9,11 @@ import net.jackanape.brewmod.networking.packet.ThirstDataSyncS2CPacket;
 import net.jackanape.brewmod.thirst.PlayerThirst;
 import net.jackanape.brewmod.thirst.PlayerThirstProvider;
 import net.jackanape.brewmod.villager.ModVillagers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +23,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,11 +34,16 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = BrewMod.MOD_ID)
 public class ModEvents {
+
+
+
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
 
         //player can only buy/sell small items to get started with farming
         //lvl 1
+
+        /* BARKEEP */
         if (event.getType() == ModVillagers.BARKEEP.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             int villagerLevel = 1;
@@ -45,12 +53,6 @@ public class ModEvents {
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
                     new ItemStack(ModItems.EMPTY_PINT_GLASS.get(), 3), //giving villager item, cost
                     player_empty_pint_glass, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
-
-            //V2P - buying
-            ItemStack villager_barley_seeds = new ItemStack(ModItems.BARLEY_SEEDS.get(), 3); //item buying, p_41602 = quantity per sale
-            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
-                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
-                    villager_barley_seeds, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
         }
 
@@ -107,6 +109,77 @@ public class ModEvents {
                     villager_diamond, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
 
         }
+
+
+    //####### create a new merchant class with all new methods
+        /* BREWMASTER */
+        if (event.getType() == ModVillagers.BREWMASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 1;
+
+            //V2P - buying
+            ItemStack villager_barley_seeds = new ItemStack(ModItems.BARLEY_SEEDS.get(), 3); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
+                    villager_barley_seeds, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_mash_extract = new ItemStack(ModItems.MASH_EXTRACT.get(), 1); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 3), //giving villager item, cost
+                    villager_mash_extract, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_hops = new ItemStack(ModItems.HOPS.get(), 3); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 1), //giving villager item, cost
+                    villager_hops, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_brewers_yeast = new ItemStack(ModItems.BREWERS_YEAST.get(), 1); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 2), //giving villager item, cost
+                    villager_brewers_yeast, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+            ItemStack villager_empty_cube = new ItemStack(ModItems.BEER_CUBE_EMPTY.get(), 1); //item buying, p_41602 = quantity per sale
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(ModItems.BEER_BUCKS.get(), 10), //giving villager item, cost
+                    villager_empty_cube, 999999999, 8, 0.00F)); //return item, maxuses, villager xp gain, price multiplier
+
+        }
+
+        //player can start buying beer from villager
+        //lvl 2
+        if (event.getType() == ModVillagers.BREWMASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 2;
+
+
+        }
+
+        //player can start selling beer - small quantities
+        //lvl 3
+        if (event.getType() == ModVillagers.BREWMASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 3;
+
+
+        }
+
+        //player can start selling beer - large quantities
+        //lvl 4
+        if (event.getType() == ModVillagers.BREWMASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 4;
+
+
+        }
+
+        //lvl 5
+        if (event.getType() == ModVillagers.BREWMASTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            int villagerLevel = 5;
+
+
+        }
+
 
         //empty cases
 //            ItemStack villager_empty_case = new ItemStack(ModItems.EMPTY_BOTTLE_CASE.get(), 1); //item buying, p_41602 = quantity per sale
@@ -169,6 +242,19 @@ public class ModEvents {
                 player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
                     ModMessages.sendToPlayer(new ThirstDataSyncS2CPacket(thirst.getThirst()), player);
                 });
+            }
+        }
+    }
+
+
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event)
+    {
+        if(event.getEntity() instanceof Sheep)
+        {
+            if(event.getSource().getEntity() instanceof Player player)
+            {
+                player.sendSystemMessage(Component.literal(player.getDisplayName() + " Stop Killing Sheep!"));
             }
         }
     }

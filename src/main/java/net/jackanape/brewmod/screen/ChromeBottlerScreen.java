@@ -35,14 +35,14 @@ public class ChromeBottlerScreen extends AbstractContainerScreen<ChromeBottlerMe
         this.blit(pPoseStack, x, y, 0, 0, this.getXSize(), this.getYSize());
 //        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
-        renderProgressArrow(pPoseStack, x, y);
+//        renderProgressArrow(pPoseStack, x, y);
     }
 
-    private void renderProgressArrow(PoseStack pPoseStack, int x, int y) {
-        if (menu.isCrafting()) {
-            blit(pPoseStack, x + 105, y + 33, 176, 0, 8, menu.getScaledProgress()); //real
-        }
-    }
+//    private void renderProgressArrow(PoseStack pPoseStack, int x, int y) {
+//        if (menu.isCrafting()) {
+//            blit(pPoseStack, x + 105, y + 33, 176, 0, 8, menu.getScaledProgress()); //real
+//        }
+//    }
 
     @Override
     public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {

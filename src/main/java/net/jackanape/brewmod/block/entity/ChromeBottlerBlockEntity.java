@@ -14,16 +14,18 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jline.utils.Log;
 
 @SuppressWarnings("ALL")
 public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvider {
@@ -39,7 +41,7 @@ public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvide
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 78;
+    private int maxProgress = 24;
 
     public ChromeBottlerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CHROME_BOTTLER.get(), pos, state);
@@ -82,7 +84,7 @@ public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvide
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
 
@@ -130,7 +132,10 @@ public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvide
             return;
         }
 
-        if (hasRecipe(pEntity)) {
+        if (hasRecipe(pEntity) && //check whether slots 1 and 2 are at max cap, if they are dont process
+                pEntity.itemHandler.getStackInSlot(1).getCount() < pEntity.itemHandler.getStackInSlot(1).getMaxStackSize() &&
+                pEntity.itemHandler.getStackInSlot(2).getCount() < pEntity.itemHandler.getStackInSlot(2).getMaxStackSize()) {
+
             pEntity.progress++;
             setChanged(level, pos, state);
 
@@ -147,27 +152,63 @@ public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvide
         this.progress = 0;
     }
 
+    private static int beerCubeCapacity = 24; //equals 24 pints
+    private static boolean isBucket;
+
     private static void craftItem(ChromeBottlerBlockEntity pEntity) {
 
         if (hasRecipe(pEntity)) {
-            pEntity.itemHandler.extractItem(1, 1, false);
-            pEntity.itemHandler.setStackInSlot(2, new ItemStack(ModItems.ZIRCON.get(),
-                    pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
+            pEntity.itemHandler.extractItem(0, 1, false);
+
+            if(isBucket)
+            {
+                pEntity.itemHandler.setStackInSlot(2, new ItemStack(ModItems.BEER_WATER_BUCKET.get(),
+                        pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
+
+                beerCubeCapacity = 0;
+            }
+            else
+            {
+                pEntity.itemHandler.setStackInSlot(2, new ItemStack(ModItems.LAGER_PINT.get(),
+                        pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
+
+                beerCubeCapacity--;
+            }
+
+
 
             pEntity.resetProgress();
         }
+
+        if(beerCubeCapacity == 0)
+        {
+            pEntity.itemHandler.extractItem(1, 1, false);
+            pEntity.itemHandler.setStackInSlot(1, new ItemStack(ModItems.BEER_CUBE_EMPTY.get(),
+                    pEntity.itemHandler.getStackInSlot(1).getCount() + 1));
+
+            beerCubeCapacity = 24;
+        }
     }
 
+    //change items in slots from here
     private static boolean hasRecipe(ChromeBottlerBlockEntity entity) {
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
 
-        boolean hasRawGemInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem() == ModItems.RAW_ZIRCON.get();
+        boolean emptyPintReady = entity.itemHandler.getStackInSlot(0).getItem() == ModItems.EMPTY_PINT_GLASS.get();
+        boolean beerCubeReady = entity.itemHandler.getStackInSlot(1).getItem() == ModItems.BEER_CUBE.get();
 
-        return hasRawGemInFirstSlot && canInsertAmountIntoOutputSlot(inventory) &&
-                canInsertItemIntoOutputSlot(inventory, new ItemStack(ModItems.ZIRCON.get(), 1));
+        boolean bucketReady = false;
+        isBucket = false;
+        if(entity.itemHandler.getStackInSlot(0).getItem() == Items.BUCKET)
+        {
+            bucketReady = true;
+            isBucket= true;
+        }
+
+        return (emptyPintReady || bucketReady) && beerCubeReady;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
@@ -175,6 +216,6 @@ public class ChromeBottlerBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
+        return inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
     }
 }

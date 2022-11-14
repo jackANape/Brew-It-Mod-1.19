@@ -7,7 +7,7 @@ public class ModCreativeModeTab {
     public static final CreativeModeTab BREW_TAB = new CreativeModeTab("brewtab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.ZIRCON.get());
+            return new ItemStack(ModItems.LAGER_PINT.get());
         }
     };
 }

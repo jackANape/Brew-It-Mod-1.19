@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "brewmod:block/brewing_kettle"
+    },
+    "facing=south": {
+      "model": "brewmod:block/brewing_kettle",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "brewmod:block/brewing_kettle",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "brewmod:block/brewing_kettle",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "brewmod:block/chrome_mill"
+    },
+    "facing=south": {
+      "model": "brewmod:block/chrome_mill",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "brewmod:block/chrome_mill",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "brewmod:block/chrome_mill",
+      "y": 270
+    }
+  }
+}

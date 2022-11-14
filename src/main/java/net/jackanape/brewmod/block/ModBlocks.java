@@ -80,16 +80,33 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
 
     /* Custom Blocks */
-    public static final RegistryObject<Block> WOODEN_BARREL = registerBlock("wooden_barrel",
-            () -> new WoodenBarrelBlock(BlockBehaviour.Properties.of(Material.WOOD)
+    public static final RegistryObject<Block> FERMENTING_BARREL = registerBlock("fermenting_barrel",
+            () -> new FermentingBarrelBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(3f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
 
     public static final RegistryObject<Block> CHROME_BOTTLER = registerBlock("chrome_bottler",
             () -> new ChromeBottlerBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
 
+    public static final RegistryObject<Block> CHROME_MILL = registerBlock("chrome_mill",
+            () -> new ChromeMillBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> MASH_TUN = registerBlock("mash_tun",
+            () -> new MashTunBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> BREWING_KETTLE = registerBlock("brewing_kettle",
+            () -> new BrewingKettleBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(6f).requiresCorrectToolForDrops().noOcclusion()), ModCreativeModeTab.BREW_TAB);
+
     /* Barkeep POI */
     public static final RegistryObject<Block> BARKEEP_WORK_BLOCK = registerBlock("barkeep_work_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(3f, 10f)
+                    .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);
+
+    public static final RegistryObject<Block> BREWMASTER_WORK_BLOCK = registerBlock("brewmaster_work_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(3f, 10f)
                     .requiresCorrectToolForDrops().sound(SoundType.WOOD)), ModCreativeModeTab.BREW_TAB);

@@ -1,17 +1,17 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "brewmod:block/copper_pipe",
-    "1": "brewmod:block/copper_bottom",
-    "2": "brewmod:block/copper_fill",
-    "8": "brewmod:block/copper_pipe_reverse",
-    "9": "brewmod:block/copper_side",
-    "10": "brewmod:block/copper_top",
-    "11": "brewmod:block/copper_top_sides",
-    "13": "brewmod:block/bottler_tap",
-    "14": "brewmod:block/bottle_pipes",
-    "15": "brewmod:block/bottler_nose",
-    "particle": "brewmod:block/copper_pipe"
+    "0": "brewmod:block/chromium_block",
+    "1": "brewmod:block/chromium_block",
+    "2": "brewmod:block/chromium_block",
+    "8": "brewmod:block/chromium_block",
+    "9": "brewmod:block/chromium_block",
+    "10": "brewmod:block/chromium_block",
+    "11": "brewmod:block/chromium_block",
+    "13": "brewmod:block/chromium_block",
+    "14": "brewmod:block/chromium_block",
+    "15": "brewmod:block/chromium_block",
+    "particle": "brewmod:block/chromium_block"
   },
   "elements": [
     {

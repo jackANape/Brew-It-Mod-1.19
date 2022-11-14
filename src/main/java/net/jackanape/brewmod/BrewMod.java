@@ -8,8 +8,7 @@ import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.ModItems;
 import net.jackanape.brewmod.networking.ModMessages;
 import net.jackanape.brewmod.painting.ModPaintings;
-import net.jackanape.brewmod.screen.ChromeBottlerScreen;
-import net.jackanape.brewmod.screen.ModMenuTypes;
+import net.jackanape.brewmod.screen.*;
 import net.jackanape.brewmod.villager.ModVillagers;
 import net.jackanape.brewmod.world.feature.ModConfiguredFeatures;
 import net.jackanape.brewmod.world.feature.ModPlacedFeatures;
@@ -71,6 +70,10 @@ public class BrewMod {
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
 
             MenuScreens.register(ModMenuTypes.CHROME_BOTTLER_MENU.get(), ChromeBottlerScreen::new);
+            MenuScreens.register(ModMenuTypes.CHROME_MILL_MENU.get(), ChromeMillScreen::new);
+            MenuScreens.register(ModMenuTypes.MASH_TUN_MENU.get(), MashTunScreen::new);
+            MenuScreens.register(ModMenuTypes.BREWING_KETTLE_MENU.get(), BrewingKettleScreen::new);
+            MenuScreens.register(ModMenuTypes.FERMENTING_BARREL_MENU.get(), FermentingBarrelScreen::new);
 
 
         }

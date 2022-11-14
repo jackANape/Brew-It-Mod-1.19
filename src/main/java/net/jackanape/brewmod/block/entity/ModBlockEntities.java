@@ -17,6 +17,25 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ChromeBottlerBlockEntity::new,
                             ModBlocks.CHROME_BOTTLER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<ChromeMillBlockEntity>> CHROME_MILL =
+            BLOCK_ENTITIES.register("chrome_mill", () ->
+                    BlockEntityType.Builder.of(ChromeMillBlockEntity::new,
+                            ModBlocks.CHROME_MILL.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<MashTunBlockEntity>> MASH_TUN =
+            BLOCK_ENTITIES.register("mash_tun", () ->
+                    BlockEntityType.Builder.of(MashTunBlockEntity::new,
+                            ModBlocks.MASH_TUN.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BrewingKettleBlockEntity>> BREWING_KETTLE =
+            BLOCK_ENTITIES.register("brewing_kettle", () ->
+                    BlockEntityType.Builder.of(BrewingKettleBlockEntity::new,
+                            ModBlocks.BREWING_KETTLE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FermentingBarrelBlockEntity>> FERMENTING_BARREL =
+            BLOCK_ENTITIES.register("fermenting_barrel", () ->
+                    BlockEntityType.Builder.of(FermentingBarrelBlockEntity::new,
+                            ModBlocks.FERMENTING_BARREL.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

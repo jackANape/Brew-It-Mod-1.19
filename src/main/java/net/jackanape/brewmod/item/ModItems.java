@@ -4,11 +4,7 @@ import net.jackanape.brewmod.BrewMod;
 import net.jackanape.brewmod.block.ModBlocks;
 import net.jackanape.brewmod.block.fluid.ModFluids;
 import net.jackanape.brewmod.item.custom.EightBallItem;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -59,9 +55,17 @@ public class ModItems {
             () -> new BucketItem(ModFluids.SOURCE_BEER_WATER,
                     new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
 
+    public static final RegistryObject<Item> BOILING_WATER_BUCKET = ITEMS.register("boiling_water_bucket",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    public static final RegistryObject<Item> MASH_BUCKET = ITEMS.register("mash_bucket",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    public static final RegistryObject<Item> MASH_EXTRACT = ITEMS.register("mash_extract",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
+
     public static final RegistryObject<Item> LAGER_PINT = ITEMS.register("lager_pint",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).stacksTo(1)
-                    .food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB).food(ModFoods.LAGER_PINT_PROPERTIES)));
 
     public static final RegistryObject<Item> WORT = ITEMS.register("wort",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
@@ -70,6 +74,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
     public static final RegistryObject<Item> HOPS = ITEMS.register("hops",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
+
+    public static final RegistryObject<Item> BREWERS_YEAST = ITEMS.register("brewers_yeast",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.BREW_TAB)));
 
     public static final RegistryObject<Item> BARLEY_SEEDS = ITEMS.register("barley_seeds",
